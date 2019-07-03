@@ -22,10 +22,9 @@ public class CompanyDomainImpl implements CompanyDomain {
 	String encoding = "UTF-8";
 	//public static String filePath = "E://spring boot learning/demo/src/main/resources/static/";
 	static String userPath=System.getProperty("user.dir");
-	//static String replaceString=userPath.replace('\\','/');
-	//static String replaceString1=replaceString.replaceFirst("/","//");
-	//public static String filePath=userPath+"/src/main/resources/static/";
-	public static String filePath=userPath+"/";
+	static String replaceString=userPath.replace('\\','/');
+	static String replaceString1=replaceString.replaceFirst("/","//");
+	public static String filePath=replaceString1+"/src/main/resources/static/";
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
@@ -59,7 +58,6 @@ public class CompanyDomainImpl implements CompanyDomain {
 			}
 			System.out.println("successfully executed");
 			System.out.println("dynamic file path : "+filePath);
-			System.out.println("user path : "+userPath);
 		} catch (IOException e) {
 
 			e.printStackTrace();
