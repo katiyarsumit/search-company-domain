@@ -69,6 +69,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 	static String convertMultiPartToFileAndSave(MultipartFile file) throws IOException {
 		String fileName = file.getOriginalFilename();
 		FileOutputStream fos = new FileOutputStream(filePath + fileName);
+		System.out.println("dynamic file path @@@@@: "+filePath +" " +fileName);
 		fos.write(file.getBytes());
 		fos.close();
 		return fileName;
