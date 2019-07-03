@@ -24,13 +24,12 @@ public class CompanyDomainImpl implements CompanyDomain {
 	static String userPath=System.getProperty("user.dir");
 	static String replaceString=userPath.replace('\\','/');
 	static String replaceString1=replaceString.replaceFirst("/","//");
-	//public static String filePath=replaceString1+"/src/main/resources/static/";
-	public static String filePath=userPath;
+	public static String filePath=replaceString1+"/src/main/resources/static/";
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
 			String fileName = convertMultiPartToFileAndSave(file);
-			downloadUrl=filePath+fileName;
+			downloadUrl=fileName;
 			String domainName;
 			FileInputStream fis = new FileInputStream(new File(filePath+fileName));
 			@SuppressWarnings("resource")
