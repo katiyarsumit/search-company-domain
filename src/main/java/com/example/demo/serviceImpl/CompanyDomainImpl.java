@@ -25,7 +25,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 	//static String replaceString=userPath.replace('\\','/');
 	//static String replaceString1=replaceString.replaceFirst("/","//");
 	//public static String filePath=userPath+"/src/main/resources/static/";
-	public static String filePath=userPath;
+	public static String filePath=userPath+"/";
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
