@@ -16,7 +16,6 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.service.CompanyDomain;
-
 @Service
 public class CompanyDomainImpl implements CompanyDomain {
 	String encoding = "UTF-8";
