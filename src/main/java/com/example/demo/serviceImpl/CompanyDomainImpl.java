@@ -29,7 +29,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 		String downloadUrl="";
 		try {
 			String fileName = convertMultiPartToFileAndSave(file);
-			downloadUrl=fileName;
+			downloadUrl=filePath;
 			String domainName;
 			FileInputStream fis = new FileInputStream(new File(filePath+fileName));
 			@SuppressWarnings("resource")
