@@ -15,6 +15,11 @@ public class SearchEngineController {
 	@Autowired
 	CompanyDomain companyDomain;
 	
+	@RequestMapping(value="/")
+public ModelAndView welcomepage() {
+	ModelAndView mv=new ModelAndView("welcomepage");
+	return mv;
+}
 	
 	@RequestMapping(value="/searchEngine")
 public ModelAndView searchEngine() {
