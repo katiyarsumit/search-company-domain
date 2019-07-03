@@ -29,7 +29,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 		String downloadUrl="";
 		try {
 			String fileName = convertMultiPartToFileAndSave(file);
-			downloadUrl=filePath;
+			downloadUrl=filePath+fileName;
 			String domainName;
 			FileInputStream fis = new FileInputStream(new File(filePath+fileName));
 			@SuppressWarnings("resource")
@@ -58,6 +58,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 			}
 			System.out.println("successfully executed");
 			System.out.println("dynamic file path : "+filePath);
+			System.out.println("download url : "+downloadUrl);
 		} catch (IOException e) {
 
 			e.printStackTrace();
