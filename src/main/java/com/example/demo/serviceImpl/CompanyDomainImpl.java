@@ -57,6 +57,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 			}
 			System.out.println("successfully executed");
 			System.out.println("dynamic file path : "+filePath);
+			System.out.println("downloadUrl file path : "+downloadUrl);
 		} catch (IOException e) {
 
 			e.printStackTrace();
