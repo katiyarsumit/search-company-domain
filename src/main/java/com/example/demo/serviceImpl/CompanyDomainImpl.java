@@ -16,9 +16,8 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.service.CompanyDomain;
-import java.io.Serializable;
 @Service
-public class CompanyDomainImpl implements CompanyDomain,Serializable {
+public class CompanyDomainImpl implements CompanyDomain{
 	private static final long serialVersionUID = 1L;
 	String encoding = "UTF-8";
 	//public static String filePath = "E://spring boot learning/demo/src/main/resources/static/";
