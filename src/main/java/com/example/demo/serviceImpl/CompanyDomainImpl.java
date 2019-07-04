@@ -28,14 +28,14 @@ public class CompanyDomainImpl implements CompanyDomain {
 	static String replaceString=userPath.replace('\\','/');
 	static String replaceString1=replaceString.replaceFirst("/","//");
 	public static String filePath=replaceString1+"/src/main/resources/static/";
-	 public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
+	 public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static";
 	
 	
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
 			Path fileName = convertMultiPartToFileAndSave1(file);
-			downloadUrl=fileName.toString();
+			downloadUrl=fileName(file);
 			String domainName;
 			FileInputStream fis = new FileInputStream(new File(fileName.toString()));
 			@SuppressWarnings("resource")
@@ -76,10 +76,10 @@ public class CompanyDomainImpl implements CompanyDomain {
 	static Path convertMultiPartToFileAndSave1(MultipartFile file) throws IOException {
 		StringBuilder fileNames = new StringBuilder();
 		 File directory = new File("uploads");
-		 if(!directory.exists()) {
+		/* if(!directory.exists()) {
 			 directory.mkdir();
 			 System.out.println(directory);
-		 }
+		 }*/
 		  Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
 		  fileNames.append(file.getOriginalFilename()+" ");
 		  try {
@@ -97,4 +97,9 @@ public class CompanyDomainImpl implements CompanyDomain {
 		fos.close();
 		return fileName;
 	}
+	
+	static String fileName(MultipartFile file) {
+		return file.getOriginalFilename();
+	}
+	
 }
