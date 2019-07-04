@@ -23,7 +23,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 	static String userPath=System.getProperty("user.dir");
 	//static String replaceString=userPath.replace('\\','/');
 	//static String replaceString1=replaceString.replaceFirst("/","//");
-	public static String filePath="https://search-domain-name.herokuapp.com/";
+	public static String filePath="https://search-domain-name.herokuapp.com/src/main/resources/static/";
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
