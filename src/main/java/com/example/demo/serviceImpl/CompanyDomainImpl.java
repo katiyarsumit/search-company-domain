@@ -69,6 +69,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 		String fileName = file.getOriginalFilename();
 		FileOutputStream fos = new FileOutputStream(filePath + fileName);
 		fos.write(file.getBytes());
+		fos.flush();
 		fos.close();
 		return fileName;
 	}
