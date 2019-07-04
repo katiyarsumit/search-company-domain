@@ -21,10 +21,10 @@ public class CompanyDomainImpl implements CompanyDomain{
 	private static final long serialVersionUID = 1L;
 	String encoding = "UTF-8";
 	//public static String filePath = "E://spring boot learning/demo/src/main/resources/static/";
-	static String userPath=System.getProperty("user.dir");
+	static String userPath=System.getProperty("user.dir")+"/uploads";
 	static String replaceString=userPath.replace('\\','/');
 	static String replaceString1=replaceString.replaceFirst("/","//");
-	public static String filePath=userPath+"/src/main/resources/static/";
+	public static String filePath=userPath;
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
