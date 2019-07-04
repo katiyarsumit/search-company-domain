@@ -5,9 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URLEncoder;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Iterator;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -27,17 +24,14 @@ public class CompanyDomainImpl implements CompanyDomain {
 	static String userPath=System.getProperty("user.dir");
 	static String replaceString=userPath.replace('\\','/');
 	static String replaceString1=replaceString.replaceFirst("/","//");
-	public static String filePath=replaceString1+"/src/main/resources/static/";
-	 public static String uploadDirectory = System.getProperty("user.dir")+"/src/main/resources/static";
-	
-	
+	public static String filePath=userPath+"/src/main/resources/static/";
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
-			Path fileName = convertMultiPartToFileAndSave1(file);
-			downloadUrl=fileName(file);
+			String fileName = convertMultiPartToFileAndSave(file);
+			downloadUrl=fileName;
 			String domainName;
-			FileInputStream fis = new FileInputStream(new File(fileName.toString()));
+			FileInputStream fis = new FileInputStream(new File(filePath+fileName));
 			@SuppressWarnings("resource")
 			XSSFWorkbook workbook = new XSSFWorkbook (fis);
 			XSSFSheet sheet = workbook.getSheetAt(0);
@@ -58,36 +52,18 @@ public class CompanyDomainImpl implements CompanyDomain {
 				Cell c1=row.createCell(1);
 				c1.setCellValue(domainName);
 				fis.close();
-				FileOutputStream fos =new FileOutputStream(new File(fileName.toString()));
+				FileOutputStream fos =new FileOutputStream(new File(filePath+fileName));
 				workbook.write(fos);
 		        fos.close();
 			}
 			System.out.println("successfully executed");
-			System.out.println("uploadDirectory file path : "+uploadDirectory);
-			System.out.println("dynamic file path : "+fileName);
+			System.out.println("dynamic file path : "+filePath);
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
 
 		return downloadUrl;
-	}
-	
-	static Path convertMultiPartToFileAndSave1(MultipartFile file) throws IOException {
-		StringBuilder fileNames = new StringBuilder();
-		 File directory = new File("uploads");
-		/* if(!directory.exists()) {
-			 directory.mkdir();
-			 System.out.println(directory);
-		 }*/
-		  Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
-		  fileNames.append(file.getOriginalFilename()+" ");
-		  try {
-			Files.write(fileNameAndPath, file.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return fileNameAndPath;
 	}
 	
 	static String convertMultiPartToFileAndSave(MultipartFile file) throws IOException {
@@ -97,9 +73,4 @@ public class CompanyDomainImpl implements CompanyDomain {
 		fos.close();
 		return fileName;
 	}
-	
-	static String fileName(MultipartFile file) {
-		return file.getOriginalFilename();
-	}
-	
 }
