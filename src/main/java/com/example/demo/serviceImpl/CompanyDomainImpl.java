@@ -16,8 +16,10 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.demo.service.CompanyDomain;
+import java.io.Serializable;
 @Service
-public class CompanyDomainImpl implements CompanyDomain {
+public class CompanyDomainImpl implements CompanyDomain,Serializable {
+	private static final long serialVersionUID = 1L;
 	String encoding = "UTF-8";
 	//public static String filePath = "E://spring boot learning/demo/src/main/resources/static/";
 	static String userPath=System.getProperty("user.dir");
@@ -67,7 +69,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 	
 	static String convertMultiPartToFileAndSave(MultipartFile file) throws IOException {
 		String fileName = file.getOriginalFilename();
-		FileOutputStream fos = new FileOutputStream(filePath);
+		FileOutputStream fos = new FileOutputStream(filePath+fileName);
 		fos.write(file.getBytes());
 		fos.flush();
 		fos.close();
