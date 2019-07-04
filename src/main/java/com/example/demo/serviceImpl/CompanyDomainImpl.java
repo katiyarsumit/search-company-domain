@@ -24,13 +24,17 @@ import com.example.demo.service.CompanyDomain;
 public class CompanyDomainImpl implements CompanyDomain {
 	String encoding = "UTF-8";
 	//public static String filePath = "E://spring boot learning/demo/src/main/resources/static/";
+	static String userPath=System.getProperty("user.dir");
+	static String replaceString=userPath.replace('\\','/');
+	static String replaceString1=replaceString.replaceFirst("/","//");
+	public static String filePath=replaceString1+"/src/main/resources/static/";
 	 public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
 	
 	
 	public String convertFile(MultipartFile file) {
 		String downloadUrl="";
 		try {
-			Path fileName = convertMultiPartToFileAndSave(file);
+			Path fileName = convertMultiPartToFileAndSave1(file);
 			downloadUrl=fileName.toString();
 			String domainName;
 			FileInputStream fis = new FileInputStream(new File(fileName.toString()));
@@ -69,7 +73,7 @@ public class CompanyDomainImpl implements CompanyDomain {
 		return downloadUrl;
 	}
 	
-	static Path convertMultiPartToFileAndSave(MultipartFile file) throws IOException {
+	static Path convertMultiPartToFileAndSave1(MultipartFile file) throws IOException {
 		StringBuilder fileNames = new StringBuilder();
 		 File directory = new File("uploads");
 		 if(!directory.exists()) {
@@ -84,5 +88,13 @@ public class CompanyDomainImpl implements CompanyDomain {
 			e.printStackTrace();
 		}
 		return fileNameAndPath;
+	}
+	
+	static String convertMultiPartToFileAndSave(MultipartFile file) throws IOException {
+		String fileName = file.getOriginalFilename();
+		FileOutputStream fos = new FileOutputStream(filePath + fileName);
+		fos.write(file.getBytes());
+		fos.close();
+		return fileName;
 	}
 }
